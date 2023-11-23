@@ -1,5 +1,5 @@
 # SelfOcc: Self-Supervised Vision-Based 3D Occupancy Prediction
-### [Paper](https://arxiv.org/pdf/)
+### [Paper](https://arxiv.org/pdf/2311.12754)
 
 > SelfOcc: Self-Supervised Vision-Based 3D Occupancy Prediction
 
@@ -70,7 +70,7 @@ If you find this project helpful, please consider citing the following paper:
 @article{huang2023self,
     title={SelfOcc: Self-Supervised Vision-Based 3D Occupancy Prediction},
     author={Huang, Yuanhui and Zheng, Wenzhao and Zhang, Borui and Zhou, Jie and Lu, Jiwen },
-    journal={arXiv preprint arXiv:},
+    journal={arXiv preprint arXiv:2311.12754},
     year={2023}
 }
 ```
