@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+<head>
+<title>SelfOcc</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
+<link href="bootstrap.min.css" rel="stylesheet">
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
+<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet"> -->
+<link href="opensans.css" rel="stylesheet">
+<link rel="icon" href="images/logo3.png">
+<link href="style.css" rel="stylesheet">
+<style>
+  .container{
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.container_v2{
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 10.25%;
+}
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: "1000";
+    width: 100%;
+    height: 100%;
+}
+
+  .collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    max-width: "1000";
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+
+  .active, .collapsible:hover {
+    background-color: #555;
+  }
+  
+  .content {
+    padding: 0 18px;
+    max-width: "1000";
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+  }
+</style>
+
+<style>
+.paperthumb {
+  float:left; width: 120px; margin: 3px 10px 7px 0;
+}
+.paperdesc {
+  clear: both;
+}
+</style>
+</head>
+
+<body class="nd-docs">
+<div class="nd-pageheader">
+ <div class="container_v2">
+ <p class="lead" style="font-size:30px">
+    <b><a href="https://arxiv.org/abs/2311.12754">SelfOcc: Self-Supervised Vision-Based 3D Occupancy Prediction</a></b>
+  <address style="font-size: 110%;">
+    <nobr><a href="https://scholar.google.com/citations?&user=LKVgsk4AAAAJ">Yuanhui Huang</a><sup>*</sup>,</nobr>
+    <nobr><a href="https://wzzheng.net/">Wenzhao Zheng</a><sup>*†</sup>,</nobr>
+    <nobr><a href="https://boruizhang.site/">Borui Zhang</a>,</nobr>
+    <nobr><a href="https://scholar.google.com/citations?user=6a79aPwAAAAJ&hl=en">Jie Zhou</a>,</nobr>
+    <nobr><a href="http://ivg.au.tsinghua.edu.cn/Jiwen_Lu/">Jiwen Lu</a><sup>‡</sup>
+  <br>
+      <nobr>Tsinghua University</nobr>
+      <!-- <nobr><sup>2</sup>PhiGent Robotics</nobr> -->
+  </address>
+   <!-- <div style="font-size: 170%;">CVPR 2023</div> -->
+  <address style="font-size: 120%;">
+	 <!-- <br> -->
+  [<a href="https://arxiv.org/pdf/2311.12754"><b>Paper (Arxiv)</b></a>]&nbsp;&nbsp;&nbsp;&nbsp;
+  <!-- [<a href="https://www.youtube.com/">Video(Youtube)</a>]&nbsp;&nbsp;&nbsp;&nbsp; -->
+  [<a href="https://github.com/huang-yh/SelfOcc"><b>Code (GitHub)</b></a>]&nbsp;&nbsp;&nbsp;&nbsp;
+  <!-- [<a href="https://zhuanlan.zhihu.com">Post(Zhihu)</a>] -->
+  </address>
+  <small>*Equal contribution. † Project Leader. ‡Corresponding author.</small>
+ </div>
+ </p>
+ </div>
+</div> <!-- end nd-pageheader -->
+
+<div class="container">
+
+<h2>Demo</h2><hr>
+
+<h4>SelfOcc trained using only video sequences and poses:</h4><hr>
+<p align="center">
+  <video width="90%" controls>
+    <source src="videos/iou_small.mp4" type="video/mp4">
+  </video>
+</p>
+
+<h4>SelfOcc trained using an additional off-the-shelf 2D segmentor:</h4><hr>
+<p align="center">
+  <video width="90%" controls>
+    <source src="videos/miou_small.mp4" type="video/mp4">
+  </video>
+</p>
+
+<!-- <p align="center">
+  <img src="images/legend.png" width="90%">
+</p> -->
+
+<p align="center">
+    <img src="images/teaser.png" width="90%">
+</p>
+<p><b>Overview of our contributions.</b> 
+  Trained with only video sequences as supervision, our model can predict meaningful geometry for the scene given surround-camera RGB images, which can be further extended to semantic occupancy prediction if 2D segmentation maps are available e.g. from an off-the-shelf segmentor.
+  This task is challenging because it completely depends on video sequences to reconstruct scenes without any 3D supervision.
+  We observe that our model can produce dense and consistent occupancy prediction and even infer the back side of cars.
+</p>
+
+
+<h2>Method</h2><hr>
+<p> 
+  We first transform the images into the 3D space (e.g., bird's eye view) to obtain 3D representation of the scene.
+  We directly impose constraints on the 3D representations by treating them as signed distance fields (SDFs).
+  We can then render 2D images of previous and future frames as self-supervision signals to learn the 3D representations. 
+  We use simple 0-thresholding to predict the occupancy volume.
+</p>
+
+<p align="center">
+     <img src="images/framework.png" width="90%">
+</p>
+
+We further propose an MVS-embedded strategy to directly optimize the SDF-induced weights with multiple depth proposals, which effectively enlarges the receptive field of the depth optimization process across the whole epipolar line.
+
+<p align="center">
+  <img src="images/mvs.png" width="90%">
+</p>
+
+
+<h2>Results</h2><hr>
+
+<p>We perform three tasks: 3D occupancy prediction, novel depth synthesis, and depth estimation. For all tasks, our model is trained without 3D supervisions. </p>
+
+<h4>3D Occupancy Prediction</h4><hr>
+
+For surround-view 3D occupancy prediction, SelfOcc is the first self-supervised method that is able to produce reasonable occupancy results using only video supervision on Occ-3D.
+
+<p align="center">
+  <img src="images/occ_nus.png" width="90%">
+</p>
+
+For monocular 3D occupancy prediction, SelfOcc outperforms the previous best method SceneRF by 58.7% with an IoU of 21.97 over 13.84 on SemanticKITTI.
+
+<p align="center">
+  <img src="images/occ_kitti.png" width="50%">
+</p>
+
+Our method achieves comparable visualization quality with ground truth for both semantic and geometric occupancy prediction tasks.
+
+<p align="center">
+  <img src="images/vis_occ.png" width="90%">
+</p>
+
+
+<p></p>
+<h4>Novel Depth Synthesis</h4><hr>
+
+SelfOcc achieves the best results on both SemanticKITTI and nuScenes.
+
+<p align="center">
+  <img src="images/novel_depth.png" width="90%">
+</p>
+
+Our method is able to predict 3D structures beyond the visible surface, thus generating high-quality novel depth views.
+
+<p align="center">
+  <img src="images/vis_novel.png" width="90%">
+</p>
+
+<h4>Depth Estimation</h4>
+
+SelfOcc demonstrates competitive performance on both surrounding and monocular self-supervised depth estimation.
+
+<p align="center">
+  <img src="images/depth.png" width="90%">
+</p>
+
+Our method successfully predicts sharp and accurate depth even for thin poles and moving pedestrians.
+
+<p align="center">
+  <img src="images/vis_depth.png" width="90%">
+</p>
+
+
+<p>
+<div class="card">
+<h3 class="card-header">Bibtex</h3>
+<div class="card-block">
+<pre class="card-text clickselect">
+@article{huang2023self,
+    title={SelfOcc: Self-Supervised Vision-Based 3D Occupancy Prediction},
+    author={Huang, Yuanhui and Zheng, Wenzhao and Zhang, Borui and Zhou, Jie and Lu, Jiwen},
+    journal={arXiv preprint arXiv:2311.12754},
+    year={2023}
+}
+</pre>
+</div>
+</div>
+</p>
+
+
+<p align="right">
+     <a href="https://hanlab.mit.edu/projects/anycost-gan/">Website Template</a>
+</p>
+
+</div>
+</div> <!-- row -->
+
+</div> <!-- container -->
+
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+  
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight * 50+ "px";
+      } 
+      content.style.height = "550%";
+    });
+  }
+</script>
+
+</body>
+</html>
+
+
