@@ -1,5 +1,5 @@
 # SelfOcc: Self-Supervised Vision-Based 3D Occupancy Prediction
-### [Paper](https://arxiv.org/pdf/2311.12754)
+### [Paper](https://arxiv.org/pdf/2311.12754)  | [Project Page](https://huang-yh.github.io/SelfOcc/) 
 
 > SelfOcc: Self-Supervised Vision-Based 3D Occupancy Prediction
 
