@@ -7,7 +7,7 @@
 
 \* Equal contribution $\dagger$ Project leader $\ddagger$ Corresponding author
 
-SelfOcc empowers 3D world models (e.g., [OccWorld](https://github.com/wzzheng/OccWorld)) with scalable 3D representations, paving the way for **interpretable end-to-end large driving models**.
+SelfOcc empowers 3D autonomous driving world models (e.g., [OccWorld](https://github.com/wzzheng/OccWorld)) with scalable 3D representations, paving the way for **interpretable end-to-end large driving models**.
 
 ## News
 - **[2023/11/28]** Evaluation code release.
