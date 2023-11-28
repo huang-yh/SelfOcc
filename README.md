@@ -7,6 +7,8 @@
 
 \* Equal contribution $\dagger$ Project leader $\ddagger$ Corresponding author
 
+SelfOcc empowers 3D world models (e.g., [OccWorld](https://github.com/wzzheng/OccWorld)) with scalable 3D representations, paving the way for **interpretable end-to-end large driving models**.
+
 ## News
 - **[2023/11/28]** Evaluation code release.
 - **[2023/11/20]** Paper released on [arXiv](https://arxiv.org/abs/2311.12754).
@@ -14,52 +16,65 @@
 
 ## Demo
 
-### Trained using only video sequences and poses
+### Trained using only video sequences and poses:
 
 ![demo](./assets/iou.gif)
 
-### Trained using an additional off-the-shelf 2D segmentor 
+### Trained using an additional off-the-shelf 2D segmentor ([OpenSeeD](https://github.com/IDEA-Research/OpenSeeD)):
 
 ![demo](./assets/miou.gif)
 
 ![legend](./assets/legend.png)
 
 
-### A full demo video can be downloaded [here](https://cloud.tsinghua.edu.cn/d/640283b528f7436193a4/).
+### More demo videos can be downloaded [here](https://cloud.tsinghua.edu.cn/d/640283b528f7436193a4/).
 
-## Introduction
-
-3D occupancy prediction is an important task for the robustness of vision-centric autonomous driving, which aims to predict whether each point is occupied in the surrounding 3D space. Existing methods usually require 3D occupancy labels to produce meaningful results. However, it is very laborious to annotate the occupancy status of each voxel. In this paper, we propose SelfOcc to explore a self-supervised way to learn 3D occupancy using only video sequences. We first transform the images into the 3D space (e.g., bird's eye view) to obtain 3D representation of the scene. We directly impose constraints on the 3D representations by treating them as signed distance fields. We can then render 2D images of previous and future frames as self-supervision signals to learn the 3D representations. We propose an MVS-embedded strategy to directly optimize the SDF-induced weights with multiple depth proposals. Our SelfOcc outperforms the previous best method SceneRF by 58.7\% using a single frame as input on SemanticKITTI and is the first self-supervised work that produces reasonable 3D occupancy for surround cameras on Occ3D. SelfOcc produces high-quality depth and achieves state-of-the-art results on novel depth synthesis, monocular depth estimation, and surround-view depth estimation on the SemanticKITTI, KITTI-2015, and nuScenes, respectively. 
-
-### Overview
+## Overview
 ![overview](./assets/overview.png)
 
-### Framework
-![framework](./assets/framework.png)
+- We first transform the images into the 3D space (e.g., bird's eye view, [tri-perspective view](https://github.com/wzzheng/TPVFormer)) to obtain 3D representation of the scene. We directly impose constraints on the 3D representations by treating them as signed distance fields. We can then render 2D images of previous and future frames as self-supervision signals to learn the 3D representations. 
 
-### Results
+- Our SelfOcc outperforms the previous best method SceneRF by 58.7% using a single frame as input on SemanticKITTI and is the first self-supervised work that produces reasonable 3D occupancy for surround cameras on nuScenes. 
 
-#### Nuscenes 3D Occupancy Prediction
+- SelfOcc produces high-quality depth and achieves state-of-the-art results on **novel depth synthesis**, **monocular depth estimation**, and **surround-view depth estimation** on the SemanticKITTI, KITTI-2015, and nuScenes, respectively. 
 
-![occ_nus](./assets/occ_nus.png)
+## Getting Started
 
-#### Semantic KITTI  3D Occupancy Prediction
+### Installation
 
-![occ_kitti](./assets/occ_kitti.png)
+Follow detailed instructions in [Installation](docs/installation.md).
+
+### Preparing Dataset
+
+Follow detailed instructions in [Prepare Dataset](docs/prepare_data.md).
+
+### Run
+
+#### 3D Occupancy Prediction
+
+Download model weights [HERE](https://cloud.tsinghua.edu.cn/f/831c104c82a244e9878a/) and put it under out/nuscenes/occ/
+```
+python eval_iou.py --py-config config/nuscenes/nuscenes_occ.py --work-dir out/nuscenes/occ --resume-from out/nuscenes/occ/model_state_dict.pth --occ3d --resolution 0.4 --sem --use-mask --scene-size 4
+```
 
 #### Novel Depth Synthesis
 
-![novel_depthi](./assets/novel_depth.png)
+
+Download model weights [HERE](https://cloud.tsinghua.edu.cn/f/2d217cd298a34ed19039/) and put it under out/nuscenes/novel_depth/
+```
+python eval_novel_depth.py --py-config config/nuscenes/nuscenes_novel_depth.py --work-dir out/nuscenes/novel_depth --resume-from out/nuscenes/novel_depth/model_state_dict.pth
+```
 
 #### Depth Estimation
 
-![depth](./assets/depth.png)
+Download model weights [HERE](https://cloud.tsinghua.edu.cn/f/1a722b9139234542ae1e/) and put it under out/nuscenes/depth/
+```
+python eval_depth.py --py-config config/nuscenes/nuscenes_depth.py --work-dir out/nuscenes/depth --resume-from out/nuscenes/depth/model_state_dict.pth --depth-metric --batch 90000
+```
 
-## Run and Eval
+Note that evaluating at a resolution (450\*800) of 1:2 against the raw image (900\*1600) takes about 90 min, because we batchify rays for rendering due to GPU memory limit. You can change the rendering resolution by the variable *NUM_RAYS* in utils/config_tools.py
 
-- [Installation](docs/installation.md) 
-- [Prepare Dataset](docs/prepare_data.md)
-- [Run and Eval](docs/get_started.md)
+More details on more datasets are detailed in  [Run and Eval](docs/get_started.md).
 
 ## Related Projects
 
