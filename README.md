@@ -7,6 +7,11 @@
 
 \* Equal contribution $\dagger$ Project leader $\ddagger$ Corresponding author
 
+## News
+- **[2023/11/28]** Evaluation code release.
+- **[2023/11/20]** Paper released on [arXiv](https://arxiv.org/abs/2311.12754).
+- **[2023/11/20]** Demo release.
+
 ## Demo
 
 ### Trained using only video sequences and poses
@@ -50,9 +55,11 @@
 
 ![depth](./assets/depth.png)
 
-## Code
+## Run and Eval
 
-Coming soon!
+- [Installation](docs/installation.md) 
+- [Prepare Dataset](docs/prepare_data.md)
+- [Run and Eval](docs/get_started.md)
 
 ## Related Projects
 
