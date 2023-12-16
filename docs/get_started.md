@@ -4,12 +4,20 @@
 
 **Please ensure you have prepared the environment and datasets.**
 
-Training code will be released soon.
+[23/12/16 Update] Please update the timm package to 0.9.2 to run the training script.
 
 
 # 3D Occupancy Prediction
 
 ## NuScenes
+
+### Training 
+
+```
+python train.py --py-config config/nuscenes/nuscenes_occ.py --work-dir out/nuscenes/occ_train --depth-metric
+```
+
+### Evaluation
 
 Download model weights [HERE](https://cloud.tsinghua.edu.cn/f/831c104c82a244e9878a/) and put it under out/nuscenes/occ/
 ```
@@ -17,6 +25,14 @@ python eval_iou.py --py-config config/nuscenes/nuscenes_occ.py --work-dir out/nu
 ```
 
 ## SemanticKITTI
+
+### Training
+
+```
+python train.py --py-config config/kitti/kitti_occ.py --work-dir out/kitti/occ_train --depth-metric --dataset kitti
+```
+
+### Evaluation
 
 Download model weights [HERE](https://cloud.tsinghua.edu.cn/f/3c09a5e8f5b94fa29289/) and put it under out/kitti/occ/
 ```
@@ -27,12 +43,28 @@ python eval_iou_kitti.py --py-config config/kitti/kitti_occ.py --work-dir out/ki
 
 ## NuScenes
 
+### Training
+
+```
+python train.py --py-config config/nuscenes/nuscenes_novel_depth.py --work-dir out/nuscenes/novel_depth_train --depth-metric
+```
+
+### Evaluation
+
 Download model weights [HERE](https://cloud.tsinghua.edu.cn/f/2d217cd298a34ed19039/) and put it under out/nuscenes/novel_depth/
 ```
 python eval_novel_depth.py --py-config config/nuscenes/nuscenes_novel_depth.py --work-dir out/nuscenes/novel_depth --resume-from out/nuscenes/novel_depth/model_state_dict.pth
 ```
 
 ## SemanticKITTI
+
+### Training 
+
+```
+python train.py --py-config config/kitti/kitti_novel_depth.py --work-dir out/kitti/novel_depth_train --depth-metric --dataset kitti
+```
+
+### Evaluation
 
 Download model weights [HERE](https://cloud.tsinghua.edu.cn/f/7280a44340fd440cba7c/) and put it under out/kitti/novel_depth/
 ```
@@ -44,6 +76,14 @@ python eval_novel_depth_kitti.py --py-config config/kitti/kitti_novel_depth.py -
 
 ## nuScenes
 
+### Training 
+
+```
+python train.py --py-config config/nuscenes/nuscenes_depth.py --work-dir out/nuscenes/depth_train --depth-metric
+```
+
+### Evaluation
+
 Download model weights [HERE](https://cloud.tsinghua.edu.cn/f/1a722b9139234542ae1e/) and put it under out/nuscenes/depth/
 ```
 python eval_depth.py --py-config config/nuscenes/nuscenes_depth.py --work-dir out/nuscenes/depth --resume-from out/nuscenes/depth/model_state_dict.pth --depth-metric --batch 90000
@@ -53,6 +93,14 @@ Note that evaluating at a resolution (450\*800) of 1:2 against the raw image (90
 
 
 ## KITTI-2015
+
+### Training
+
+```
+python train.py --py-config config/kitti_raw/kitti_raw_depth.py --work-dir out/kitti_raw/depth_train --depth-metric --dataset kitti
+```
+
+### Evaluation
 
 Download model weights [HERE](https://cloud.tsinghua.edu.cn/f/f87f6876569e4fdeb967/) and put it under out/kitti_raw/depth/
 ```

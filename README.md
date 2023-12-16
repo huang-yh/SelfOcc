@@ -10,6 +10,7 @@
 SelfOcc empowers 3D autonomous driving world models (e.g., [OccWorld](https://github.com/wzzheng/OccWorld)) with scalable 3D representations, paving the way for **interpretable end-to-end large driving models**.
 
 ## News
+- **[2023/12/16]** Training code release.
 - **[2023/11/28]** Evaluation code release.
 - **[2023/11/20]** Paper released on [arXiv](https://arxiv.org/abs/2311.12754).
 - **[2023/11/20]** Demo release.
