@@ -51,10 +51,15 @@ Follow detailed instructions in [Prepare Dataset](docs/prepare_data.md).
 
 ### Run
 
+[23/12/16 Update] Please update the timm package to 0.9.2 to run the training script.
+
 #### 3D Occupancy Prediction
 
 Download model weights [HERE](https://cloud.tsinghua.edu.cn/f/831c104c82a244e9878a/) and put it under out/nuscenes/occ/
-```
+```bash
+# train
+python train.py --py-config config/nuscenes/nuscenes_occ.py --work-dir out/nuscenes/occ_train --depth-metric
+# eval
 python eval_iou.py --py-config config/nuscenes/nuscenes_occ.py --work-dir out/nuscenes/occ --resume-from out/nuscenes/occ/model_state_dict.pth --occ3d --resolution 0.4 --sem --use-mask --scene-size 4
 ```
 
@@ -62,14 +67,20 @@ python eval_iou.py --py-config config/nuscenes/nuscenes_occ.py --work-dir out/nu
 
 
 Download model weights [HERE](https://cloud.tsinghua.edu.cn/f/2d217cd298a34ed19039/) and put it under out/nuscenes/novel_depth/
-```
+```bash
+# train
+python train.py --py-config config/nuscenes/nuscenes_novel_depth.py --work-dir out/nuscenes/novel_depth_train --depth-metric
+# evak
 python eval_novel_depth.py --py-config config/nuscenes/nuscenes_novel_depth.py --work-dir out/nuscenes/novel_depth --resume-from out/nuscenes/novel_depth/model_state_dict.pth
 ```
 
 #### Depth Estimation
 
 Download model weights [HERE](https://cloud.tsinghua.edu.cn/f/1a722b9139234542ae1e/) and put it under out/nuscenes/depth/
-```
+```bash
+# train
+python train.py --py-config config/nuscenes/nuscenes_depth.py --work-dir out/nuscenes/depth_train --depth-metric
+# eval
 python eval_depth.py --py-config config/nuscenes/nuscenes_depth.py --work-dir out/nuscenes/depth --resume-from out/nuscenes/depth/model_state_dict.pth --depth-metric --batch 90000
 ```
 
