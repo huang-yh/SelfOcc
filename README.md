@@ -39,6 +39,9 @@ SelfOcc empowers 3D autonomous driving world models (e.g., [OccWorld](https://gi
 
 - SelfOcc produces high-quality depth and achieves state-of-the-art results on **novel depth synthesis**, **monocular depth estimation**, and **surround-view depth estimation** on the SemanticKITTI, KITTI-2015, and nuScenes, respectively. 
 
+## Results
+<img src=./assets/results.png height="480px" width="563px" />
+
 ## Getting Started
 
 ### Installation
