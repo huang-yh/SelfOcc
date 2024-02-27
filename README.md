@@ -1,7 +1,7 @@
 # SelfOcc: Self-Supervised Vision-Based 3D Occupancy Prediction
 ### [Paper](https://arxiv.org/pdf/2311.12754)  | [Project Page](https://huang-yh.github.io/SelfOcc/) 
 
-> SelfOcc: Self-Supervised Vision-Based 3D Occupancy Prediction
+> SelfOcc: Self-Supervised Vision-Based 3D Occupancy Prediction, CVPR 2024
 
 > [Yuanhui Huang](https://scholar.google.com/citations?hl=zh-CN&user=LKVgsk4AAAAJ)*, [Wenzhao Zheng](https://wzzheng.net/)\* $\dagger$, [Borui Zhang](https://boruizhang.site/), [Jie Zhou](https://scholar.google.com/citations?user=6a79aPwAAAAJ&hl=en&authuser=1), [Jiwen Lu](http://ivg.au.tsinghua.edu.cn/Jiwen_Lu/)$\ddagger$
 
@@ -10,6 +10,8 @@
 SelfOcc empowers 3D autonomous driving world models (e.g., [OccWorld](https://github.com/wzzheng/OccWorld)) with scalable 3D representations, paving the way for **interpretable end-to-end large driving models**.
 
 ## News
+- **[2024/2/26]** SelfOcc is accepted to CVPR 2024!
+- **[2023/12/15]** Training code release.
 - **[2023/11/28]** Evaluation code release.
 - **[2023/11/20]** Paper released on [arXiv](https://arxiv.org/abs/2311.12754).
 - **[2023/11/20]** Demo release.
