@@ -50,7 +50,7 @@ pip install -e .
 
 **f. Install other packages and deal with package versions.**
 ```shell
-pip install pillow==8.4.0 typing_extensions==4.8.0 torchmetrics==0.9.3
+pip install pillow==8.4.0 typing_extensions==4.8.0 torchmetrics==0.9.3 timm==0.9.2
 ```
 
 
