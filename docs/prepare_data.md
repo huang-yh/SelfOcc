@@ -11,7 +11,7 @@ Download nuScenes V1.0 full dataset data [HERE](https://www.nuscenes.org/downloa
 Download the gts.tar.gz of the trainval split of Occ3D-nuScenes [HERE](https://github.com/CVPR2023-3D-Occupancy-Prediction/CVPR2023-3D-Occupancy-Prediction/tree/main#download) and unzip it.
 
 
-**b. Download nuScenes pkl files.**
+**c. Download nuScenes pkl files.**
 
 As a self-supervised method, we also include sweep data during training.
 ```shell
@@ -20,6 +20,18 @@ wget --content-disposition https://cloud.tsinghua.edu.cn/f/ff15569b9e4d4086857e/
 wget --content-disposition https://cloud.tsinghua.edu.cn/f/fbe2ad8507494953abbe/?dl=1
 # pkl for keyframes
 wget --content-disposition https://cloud.tsinghua.edu.cn/f/07323a7a1c894e768924/?dl=1
+```
+
+Or you can generate the required sweep synchronized pkl files offline.
+Note that you still need and only need the tokens of keyframe samples of the train and val splits, which we store in additional pkl files (sorry~).
+Our code takes care of the sweep synchronizing part.
+```shell
+# You can download the pkl files that contain the token of keyframe samples at
+# train: https://cloud.tsinghua.edu.cn/f/efca1849e0f64551a0c4/?dl=1
+# val: https://cloud.tsinghua.edu.cn/f/a4e30d0ed8c945fba1e8/?dl=1
+
+# remember to change the source and target pkl paths at line 9 and 119.
+python examine_sweeps.py
 ```
 
 **Folder structure**

@@ -10,6 +10,7 @@
 SelfOcc empowers 3D autonomous driving world models (e.g., [OccWorld](https://github.com/wzzheng/OccWorld)) with scalable 3D representations, paving the way for **interpretable end-to-end large driving models**.
 
 ## News
+- **[2024/4/30]** Visualization code for 2D, 3D and video is released.
 - **[2024/2/26]** SelfOcc is accepted to CVPR 2024!
 - **[2023/12/16]** Training code release.
 - **[2023/11/28]** Evaluation code release.
@@ -53,6 +54,8 @@ Follow detailed instructions in [Installation](docs/installation.md).
 
 Follow detailed instructions in [Prepare Dataset](docs/prepare_data.md).
 
+We also provide our code for synchronizing sweep data according to keyframe samples.
+
 ### Run
 
 [23/12/16 Update] Please update the timm package to 0.9.2 to run the training script.
@@ -91,6 +94,10 @@ python eval_depth.py --py-config config/nuscenes/nuscenes_depth.py --work-dir ou
 Note that evaluating at a resolution (450\*800) of 1:2 against the raw image (900\*1600) takes about 90 min, because we batchify rays for rendering due to GPU memory limit. You can change the rendering resolution by the variable *NUM_RAYS* in utils/config_tools.py
 
 More details on more datasets are detailed in  [Run and Eval](docs/get_started.md).
+
+### Visualization
+
+Follow detailed instructions in [Visualization](docs/visualization.md).
 
 ## Related Projects
 
