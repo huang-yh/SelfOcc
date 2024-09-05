@@ -10,6 +10,7 @@
 SelfOcc empowers 3D autonomous driving world models (e.g., [OccWorld](https://github.com/wzzheng/OccWorld)) with scalable 3D representations, paving the way for **interpretable end-to-end large driving models**.
 
 ## News
+- **[2024/9/5]** Check out our recent [GaussianFormer](https://github.com/huang-yh/GaussianFormer) for object-centric 3D occupancy prediction.
 - **[2024/4/30]** Visualization code for 2D, 3D and video is released.
 - **[2024/2/26]** SelfOcc is accepted to CVPR 2024!
 - **[2023/12/16]** Training code release.
@@ -107,6 +108,8 @@ Also thanks to these excellent open-sourced repos:
 [SurroundOcc](https://github.com/weiyithu/SurroundOcc) 
 [OccFormer](https://github.com/zhangyp15/OccFormer)
 [BEVFormer](https://github.com/fundamentalvision/BEVFormer)
+
+A pioneering work on object-centric 3D occupancy prediction: [GaussianFormer](https://github.com/huang-yh/GaussianFormer).
 
 ## Citation
 
